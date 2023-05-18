@@ -55,7 +55,7 @@
             format json
           }
 
-          php_fastcgi http://127.0.0.1:8001
+          php_fastcgi http://{$PHP_ADDRESS}:{$PHP_PORT}
           file_server
 
           @disallowed {
@@ -110,6 +110,7 @@
       '';
     in
     {
+      caddyConfig = caddyConfig;
       dockerImage = pkgs.dockerTools.buildImage {
         name = "ghcr.io/farcaller/wordpress-docker";
         tag = "latest";
